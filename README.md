@@ -53,8 +53,8 @@ Five Stellar/Soroban prototypes, each a working Phase 1/MVP built and verified e
 ### 📊 GitHub Stats
 
 <p align="left">
-  <img height="165" src="https://github-readme-stats.vercel.app/api?username=solaawojobi00-bit&show_icons=true&theme=default&hide_border=true" />
-  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=solaawojobi00-bit&layout=compact&hide_border=true" />
+  <img height="165" src="https://github-readme-stats.vercel.app/api?username=solaawojobi00-bit&show_icons=true&theme=default&hide_border=true&count_private=true&cache_seconds=1800" />
+  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=solaawojobi00-bit&layout=compact&hide_border=true&cache_seconds=1800" />
 </p>
 
 <p align="left">
