@@ -9,7 +9,7 @@
 
 ### 🔭 Currently working on
 
-- Built 5 working Stellar/Soroban prototypes, each testnet-verified (Phase 1/MVP stage; see Building below)
+- Built 6 working Stellar/Soroban prototypes, each testnet-verified (Phase 1/MVP stage; see Building below)
 - Contributing to **OpenLedger Foundation** repos (i18n: closed translation gaps across en/es/ar/pt-BR in Kora-Frontend)
 - Contributing backend request-validation improvements to **Stellar-Ecosystem/lodestar**
 - Participating in the **Stellar Wave Program**
@@ -33,13 +33,14 @@
 
 ### 🔨 Building
 
-Five Stellar/Soroban prototypes, each a working Phase 1/MVP built and verified end-to-end on testnet (Phase 2+ work tracked as issues in each repo):
+Six Stellar/Soroban prototypes, each a working Phase 1/MVP built and verified end-to-end on testnet (Phase 2+ work tracked as issues in each repo):
 
 - **[stellar-vrf-service](https://github.com/solaawojobi00-bit/stellar-vrf-service)**: VRF-backed randomness oracle; a Soroban (Rust) contract paired with an off-chain oracle, deployed and demoed end-to-end on Stellar testnet.
 - **[earnest-escrow](https://github.com/solaawojobi00-bit/earnest-escrow)**: Real estate earnest-money deposit escrow built on Stellar Claimable Balances (no custom contract); working claim and reclaim-after-deadline demos on testnet.
 - **[sep-compliance-validator](https://github.com/solaawojobi00-bit/sep-compliance-validator)**: CLI that checks a Stellar anchor's SEP-1 and SEP-10 endpoints for real spec conformance, validated against Stellar's official testnet reference anchor.
 - **[supply-chain-proof-of-delivery-payments](https://github.com/solaawojobi00-bit/supply-chain-proof-of-delivery-payments)**: Soroban (Rust) escrow contract that releases a buyer's payment once a trusted attestor confirms delivery, or returns it after a deadline; working end-to-end on testnet.
 - **[netpulse-xlm](https://github.com/solaawojobi00-bit/netpulse-xlm)**: Live Stellar network health dashboard (ledger close time, base fees, congestion, throughput) built on real-time Horizon data.
+- **[reg-asset-issuance-gateway](https://github.com/solaawojobi00-bit/reg-asset-issuance-gateway)**: SEP-8 compliant regulated asset issuance/redemption gateway for Stellar; investor whitelist, KYC stub, SEP-8 approval, and issuance settlement, demoed end-to-end against testnet with verifiable transaction hashes.
 
 ---
 
