@@ -9,9 +9,8 @@
 
 ### 🔭 Currently working on
 
+- Actively contributing across the Stellar/Soroban ecosystem: 22+ merged PRs across 6 projects, with open PRs currently in review on GreenPay, Stellar-MarketPay, spoovault, and Stellar-Ecosystem/lodestar (see Contributions below)
 - Built 6 working Stellar/Soroban prototypes, each testnet-verified (Phase 1/MVP stage; see Building below)
-- Contributing to **OpenLedger Foundation** repos (i18n: closed translation gaps across en/es/ar/pt-BR in Kora-Frontend)
-- Contributing backend request-validation improvements to **Stellar-Ecosystem/lodestar**
 - Participating in the **Stellar Wave Program**
 
 ---
@@ -23,8 +22,10 @@
   <img src="https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white" />
   <img src="https://img.shields.io/badge/Horizon%20API-000000?style=for-the-badge&logo=stellar&logoColor=white" />
   <img src="https://img.shields.io/badge/Stellar%20SDK-000000?style=for-the-badge&logo=stellar&logoColor=white" />
-  <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white" />
+  <img src="https://img.shields.io/badge/React%20%2F%20Next.js-000000?style=for-the-badge&logo=react&logoColor=white" />
   <img src="https://img.shields.io/badge/Node.js%20%2F%20TypeScript-339933?style=for-the-badge&logo=typescript&logoColor=white" />
+  <img src="https://img.shields.io/badge/PostgreSQL-4479A1?style=for-the-badge&logo=postgresql&logoColor=white" />
+  <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white" />
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" />
   <img src="https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=postgresql&logoColor=white" />
 </p>
@@ -46,8 +47,20 @@ Six Stellar/Soroban prototypes, each a working Phase 1/MVP built and verified en
 
 ### 📌 Contributions
 
+Merged pull requests to established, multi-contributor Stellar/Soroban open-source projects:
+
+- **[GreenPay](https://github.com/Stellar-Search/GreenPay)** (Stellar-Search): open-source Stellar/Soroban climate-donation platform; 9 merged PRs spanning Horizon donation-event handling, Redis-backed rate limiting, push notifications, and transactional event-sourcing fixes.
+- **[Stellar-MarketPay](https://github.com/Stellar-MarkeyPay/Stellar-MarketPay)** (Stellar-MarkeyPay): Stellar-based marketplace/job-search platform; 4 merged PRs covering Postgres full-text search indexing, i18n CI gating, and architecture decision records.
+- **[spoovault](https://github.com/spoo-vault/spoovault)** (spoo-vault): multi-chain (Soroban/EVM) document and NFT vault; 2 merged PRs adding a TTL cache for contract view calls and list virtualization for large galleries.
+- **[StellarStream](https://github.com/StellarStream-HQ/StellarStream)** (StellarStream-HQ): real-time Soroban payroll-streaming protocol; 2 merged PRs implementing milestone-based vesting directly in the Rust contract.
 - **[YieldVault-RWA](https://github.com/solaawojobi00-bit/YieldVault-RWA)**: Stellar/Soroban RWA vault; contributed withdrawal partial-failure recovery, idempotent transfer orchestration, and the vault comparison UI (merged upstream).
 - **[Kora-Frontend](https://github.com/solaawojobi00-bit/Kora-Frontend)**: OpenLedger Foundation invoice-finance app; closed i18n gaps across en/es/ar/pt-BR (merged upstream).
+
+---
+
+### 📊 Data & MEAL
+
+- **[delta-river-dashboard](https://github.com/solaawojobi00-bit/delta-river-dashboard)**: interactive MEAL dashboard (Python) built on a fully synthetic, seeded dataset; demonstrates small-cell disclosure-control governance (suppressing any disaggregated count below 5) for reporting on sensitive programme data.
 
 ---
 
