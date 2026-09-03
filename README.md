@@ -9,8 +9,8 @@
 
 ### 🔭 Currently working on
 
-- Actively contributing across the Stellar/Soroban ecosystem: 22+ merged PRs across 6 projects, with open PRs currently in review on GreenPay, Stellar-MarketPay, spoovault, and Stellar-Ecosystem/lodestar (see Contributions below)
-- Built 6 working Stellar/Soroban prototypes, each testnet-verified (Phase 1/MVP stage; see Building below)
+- Building out **netpulse-xlm** and **sep-compliance-validator** as my flagship projects, both well past Phase 1 now (see Flagship projects below)
+- Actively contributing across the Stellar/Soroban ecosystem: 61+ merged PRs across 15 projects, with open PRs currently in review on GreenPay, Stellar-MarketPay, Hunty-contract, and Stellar-Ecosystem/lodestar (see Contributions below)
 - Participating in the **Stellar Wave Program**
 
 ---
@@ -26,21 +26,29 @@
   <img src="https://img.shields.io/badge/Node.js%20%2F%20TypeScript-339933?style=for-the-badge&logo=typescript&logoColor=white" />
   <img src="https://img.shields.io/badge/PostgreSQL-4479A1?style=for-the-badge&logo=postgresql&logoColor=white" />
   <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white" />
+  <img src="https://img.shields.io/badge/GitHub%20Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white" />
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" />
   <img src="https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=postgresql&logoColor=white" />
 </p>
 
 ---
 
+### 🚀 Flagship projects
+
+My two most actively developed projects, each grown well past an initial prototype into a genuinely deep, well-tested tool:
+
+- **[sep-compliance-validator](https://github.com/solaawojobi00-bit/sep-compliance-validator)** — 51 merged PRs. Started as a SEP-1/SEP-10 checker, now covers **SEP-1, SEP-10, SEP-12, SEP-24, and SEP-38** conformance end to end: live negative-case challenge submissions, JWT signature verification via anchor JWKS, muxed-account and memo support, 100% branch coverage on SEP-10 negative tests, and packaging as a reusable GitHub Action with an npm-published CLI (`--output`, `--only`, `--fail-on-warn`). Validated against Stellar's official testnet reference anchor.
+- **[netpulse-xlm](https://github.com/solaawojobi00-bit/netpulse-xlm)** — 38 merged PRs. Grew from a Phase 1 dashboard into a production-grade Stellar network monitor: replaced polling with Horizon SSE streaming + WebSocket push, added persistent historical storage with 24h trend views, CSV/JSON export, an accessibility pass, dark/light theming, and a CI pipeline with CodeQL scanning, dependency auditing, and secret scanning.
+
+---
+
 ### 🔨 Building
 
-Six Stellar/Soroban prototypes, each a working Phase 1/MVP built and verified end-to-end on testnet (Phase 2+ work tracked as issues in each repo):
+Four more Stellar/Soroban prototypes, each a working Phase 1/MVP built and verified end-to-end on testnet (Phase 2+ work tracked as issues in each repo):
 
 - **[stellar-vrf-service](https://github.com/solaawojobi00-bit/stellar-vrf-service)**: VRF-backed randomness oracle; a Soroban (Rust) contract paired with an off-chain oracle, deployed and demoed end-to-end on Stellar testnet.
 - **[earnest-escrow](https://github.com/solaawojobi00-bit/earnest-escrow)**: Real estate earnest-money deposit escrow built on Stellar Claimable Balances (no custom contract); working claim and reclaim-after-deadline demos on testnet.
-- **[sep-compliance-validator](https://github.com/solaawojobi00-bit/sep-compliance-validator)**: CLI that checks a Stellar anchor's SEP-1 and SEP-10 endpoints for real spec conformance, validated against Stellar's official testnet reference anchor.
 - **[supply-chain-proof-of-delivery-payments](https://github.com/solaawojobi00-bit/supply-chain-proof-of-delivery-payments)**: Soroban (Rust) escrow contract that releases a buyer's payment once a trusted attestor confirms delivery, or returns it after a deadline; working end-to-end on testnet.
-- **[netpulse-xlm](https://github.com/solaawojobi00-bit/netpulse-xlm)**: Live Stellar network health dashboard (ledger close time, base fees, congestion, throughput) built on real-time Horizon data.
 - **[reg-asset-issuance-gateway](https://github.com/solaawojobi00-bit/reg-asset-issuance-gateway)**: SEP-8 compliant regulated asset issuance/redemption gateway for Stellar; investor whitelist, KYC stub, SEP-8 approval, and issuance settlement, demoed end-to-end against testnet with verifiable transaction hashes.
 
 ---
@@ -49,12 +57,22 @@ Six Stellar/Soroban prototypes, each a working Phase 1/MVP built and verified en
 
 Merged pull requests to established, multi-contributor Stellar/Soroban open-source projects:
 
-- **[GreenPay](https://github.com/Stellar-Search/GreenPay)** (Stellar-Search): open-source Stellar/Soroban climate-donation platform; 9 merged PRs spanning Horizon donation-event handling, Redis-backed rate limiting, push notifications, and transactional event-sourcing fixes.
-- **[Stellar-MarketPay](https://github.com/Stellar-MarkeyPay/Stellar-MarketPay)** (Stellar-MarkeyPay): Stellar-based marketplace/job-search platform; 4 merged PRs covering Postgres full-text search indexing, i18n CI gating, and architecture decision records.
-- **[spoovault](https://github.com/spoo-vault/spoovault)** (spoo-vault): multi-chain (Soroban/EVM) document and NFT vault; 2 merged PRs adding a TTL cache for contract view calls and list virtualization for large galleries.
+- **[GreenPay](https://github.com/Stellar-Search/GreenPay)** (Stellar-Search): open-source Stellar/Soroban climate-donation platform; 23 merged PRs spanning Horizon donation-event handling, Redis-backed rate limiting, push notifications, and transactional event-sourcing fixes.
+- **[Stellar-MarketPay](https://github.com/Stellar-MarkeyPay/Stellar-MarketPay)** (Stellar-MarkeyPay): Stellar-based marketplace/job-search platform; 6 merged PRs covering Postgres full-text search indexing, i18n CI gating, and architecture decision records.
+- **[YieldVault-RWA](https://github.com/Junirezz/YieldVault-RWA)** (Junirezz): Stellar/Soroban RWA vault; 8 merged PRs covering withdrawal partial-failure recovery, idempotent transfer orchestration, and the vault comparison UI.
+- **[spoovault](https://github.com/spoo-vault/spoovault)** (spoo-vault): multi-chain (Soroban/EVM) document and NFT vault; 4 merged PRs adding a TTL cache for contract view calls and list virtualization for large galleries.
+- **[escrow-backend](https://github.com/Goldii-locks/escrow-backend)** (Goldii-locks): Node.js backend for Soroban milestone escrow; 4 merged PRs on schema-manager concurrency locking, diagnostics logging, and threshold alerting.
+- **[Soter](https://github.com/Pulsefy/Soter)** (Pulsefy): open-source aid-distribution platform on Stellar; 3 merged PRs adding deeper health checks, mobile certificate pinning, and campaign-level escrow pause controls.
 - **[StellarStream](https://github.com/StellarStream-HQ/StellarStream)** (StellarStream-HQ): real-time Soroban payroll-streaming protocol; 2 merged PRs implementing milestone-based vesting directly in the Rust contract.
-- **[YieldVault-RWA](https://github.com/solaawojobi00-bit/YieldVault-RWA)**: Stellar/Soroban RWA vault; contributed withdrawal partial-failure recovery, idempotent transfer orchestration, and the vault comparison UI (merged upstream).
-- **[Kora-Frontend](https://github.com/solaawojobi00-bit/Kora-Frontend)**: OpenLedger Foundation invoice-finance app; closed i18n gaps across en/es/ar/pt-BR (merged upstream).
+- **[remitlend](https://github.com/LabsCrypt/remitlend)** (LabsCrypt): decentralized lending & cross-border remittance protocol on Stellar/Soroban; 2 merged PRs fixing a DB migration mismatch and adding notification input validation.
+- **[Stellar-GreenPay](https://github.com/Emmy123222/Stellar-GreenPay)** (Emmy123222): parallel GreenPay fork; 2 merged PRs adding a contributor-attribution page and a configurable upload directory.
+- **["Stellar-MarketPay-"](https://github.com/Emmy123222/Stellar-MarketPay-)** (Emmy123222): parallel Stellar-MarketPay fork; 2 merged PRs adding adversarial test coverage for platform fees/referral bonuses and the contract upgrade path.
+- **[StarForge](https://github.com/Nanle-code/StarForge)** (Nanle-code): template-registry project; 2 merged PRs adding registry schema validation and cursor pagination/cache validators.
+- **[stellar-dev-dashboard](https://github.com/Nanle-code/stellar-dev-dashboard)** (Nanle-code): Stellar developer dashboard; 2 merged PRs handling storage-quota exhaustion and cancelling stale Horizon requests.
+- **[Hunty-contract](https://github.com/Samuel1-ona/Hunty-contract)** (Samuel1-ona): Soroban smart contract project; 2 merged PRs on reward-pool sponsorship/pro-rata refunds and a checks-effects-interactions security fix (1 more PR open in review).
+- **[Kora-Frontend](https://github.com/OpenLedger-Foundation/Kora-Frontend)** (OpenLedger Foundation): invoice-finance app; closed i18n gaps across en/es/ar/pt-BR (merged upstream).
+- **[flowfi](https://github.com/LabsCrypt/flowfi)** (LabsCrypt): programmable DeFi payment streaming/subscriptions on Stellar/Soroban; merged a fix requiring on-chain finality before committing DB state.
+- **[soroban-crashlab](https://github.com/SorobanCrashLab/soroban-crashlab)** (SorobanCrashLab): open-source fuzzing/QE toolkit for Soroban contracts; merged empty-state UI coverage across the run/log/artifact views.
 
 ---
 
