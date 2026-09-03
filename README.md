@@ -10,7 +10,7 @@
 ### 🔭 Currently working on
 
 - Building out **netpulse-xlm** and **sep-compliance-validator** as my flagship projects, both well past Phase 1 now (see Flagship projects below)
-- Actively contributing across the Stellar/Soroban ecosystem: 61+ merged PRs across 15 projects, with open PRs currently in review on GreenPay, Stellar-MarketPay, Hunty-contract, and Stellar-Ecosystem/lodestar (see Contributions below)
+- Actively contributing across the Stellar/Soroban ecosystem: 61+ merged PRs across 15 projects(see Contributions below)
 - Participating in the **Stellar Wave Program**
 
 ---
