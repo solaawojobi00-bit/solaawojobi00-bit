@@ -1,8 +1,15 @@
 #!/usr/bin/env node
-// Fetches per-language byte totals across the user's own (non-fork) public
-// repos via the GitHub REST API and renders a dark-themed SVG pie chart to
-// assets/language-pie-chart.svg, matching the README's badge palette
-// (black background, white text, style=for-the-badge conventions).
+// Measures "languages actually used" by looking at the files changed across
+// every PR authored by the user - their own repos AND repos they've
+// contributed to - rather than whole-repo byte totals. Whole-repo totals
+// would misattribute code written by other contributors in shared projects,
+// and would also count generated/vendored artifacts (e.g. a large exported
+// HTML file) as if they were hand-written. Counting by PR diff lines avoids
+// both problems.
+//
+// Renders a dark-themed SVG pie chart to assets/language-pie-chart.svg,
+// matching the README's badge palette (black background, white text,
+// style=for-the-badge conventions).
 
 const fs = require('fs');
 const path = require('path');
@@ -12,11 +19,44 @@ const TOKEN = process.env.GITHUB_TOKEN;
 const API_ROOT = 'https://api.github.com';
 const OUTPUT_PATH = path.join(__dirname, '..', 'assets', 'language-pie-chart.svg');
 
-// Languages to drop from the chart entirely. Edit as needed.
+// Repos to exclude entirely (e.g. because the work there isn't
+// representative hand-written code - delta-river-dashboard's HTML is a
+// large generated dashboard export, not hand-written markup).
+const EXCLUDED_REPOS = ['delta-river-dashboard'];
+
+// PR titles matching this are test/throwaway PRs, not real work.
+const THROWAWAY_TITLE_PATTERN = /throwaway|do not merge/i;
+
+// Languages to drop from the chart entirely (folded into "Other languages"
+// like everything past MAX_SLICES). Edit as needed.
 const EXCLUDED_LANGUAGES = [];
 
-// How many individual slices to show before grouping the rest into "Other".
-const MAX_SLICES = 8;
+// How many individual slices to show before grouping the rest into "Other
+// languages".
+const MAX_SLICES = 3;
+
+const EXT_LANGUAGE = {
+  '.ts': 'TypeScript', '.tsx': 'TypeScript',
+  '.js': 'JavaScript', '.jsx': 'JavaScript', '.mjs': 'JavaScript', '.cjs': 'JavaScript',
+  '.rs': 'Rust',
+  '.py': 'Python',
+  '.sql': 'SQL',
+  '.css': 'CSS', '.scss': 'CSS',
+  '.html': 'HTML',
+  '.sh': 'Shell', '.bash': 'Shell',
+  '.go': 'Go',
+  '.rb': 'Ruby',
+  '.java': 'Java',
+  '.c': 'C', '.h': 'C',
+  '.cpp': 'C++', '.hpp': 'C++',
+  '.sol': 'Solidity',
+};
+
+// Raw SQL is often embedded as query strings inside host-language files
+// (e.g. better-sqlite3/pg template strings in .ts/.js). Detecting it in the
+// diff keeps that real SQL work from being invisible just because it lives
+// inside a .ts file, and keeps it from inflating the host language's count.
+const SQL_LINE_PATTERN = /^\s*(CREATE\s+(TABLE|INDEX|VIEW)|SELECT\s|INSERT\s+INTO|UPDATE\s+\w+\s+SET|DELETE\s+FROM|ALTER\s+TABLE|DROP\s+(TABLE|INDEX)|PRAGMA\s|WITH\s+\w+\s+AS\s*\()/i;
 
 // Recognizable language colors (loosely based on GitHub's linguist palette).
 // Anything not listed here gets a deterministic fallback color instead of
@@ -30,15 +70,13 @@ const LANGUAGE_COLORS = {
   Shell: '#89e051',
   HTML: '#e34c26',
   CSS: '#563d7c',
-  Dockerfile: '#384d54',
-  PLpgSQL: '#336790',
   SQL: '#e38c00',
   Go: '#00ADD8',
   Ruby: '#701516',
   Java: '#b07219',
   'C++': '#f34b7d',
   C: '#555555',
-  Other: '#6e7681',
+  'Other languages': '#6e7681',
 };
 
 function warn(message) {
@@ -59,15 +97,15 @@ function colorFor(name) {
   return LANGUAGE_COLORS[name] || fallbackColor(name);
 }
 
-async function githubRequest(pathname) {
-  const res = await fetch(`${API_ROOT}${pathname}`, {
+async function githubRequest(url) {
+  const fullUrl = url.startsWith('http') ? url : `${API_ROOT}${url}`;
+  return fetch(fullUrl, {
     headers: {
       Accept: 'application/vnd.github+json',
       'X-GitHub-Api-Version': '2022-11-28',
       ...(TOKEN ? { Authorization: `Bearer ${TOKEN}` } : {}),
     },
   });
-  return res;
 }
 
 function parseNextLink(linkHeader) {
@@ -80,7 +118,7 @@ function parseNextLink(linkHeader) {
   return null;
 }
 
-async function checkRateLimit() {
+async function checkRateLimit(minRequired) {
   try {
     const res = await githubRequest('/rate_limit');
     if (!res.ok) {
@@ -89,8 +127,8 @@ async function checkRateLimit() {
     }
     const data = await res.json();
     const remaining = data?.resources?.core?.remaining ?? 0;
-    if (remaining < 20) {
-      warn(`GitHub API rate limit nearly exhausted (${remaining} remaining). Skipping this run.`);
+    if (remaining < minRequired) {
+      warn(`GitHub API rate limit nearly exhausted (${remaining} remaining, need ~${minRequired}). Skipping this run.`);
       return false;
     }
     return true;
@@ -100,58 +138,80 @@ async function checkRateLimit() {
   }
 }
 
-async function listOwnedRepos(username) {
-  const repos = [];
-  let url = `/users/${username}/repos?per_page=100&type=owner`;
+// Every PR authored by the user, any state, across all of GitHub, via the
+// search API - covers both their own repos and repos they've contributed to.
+async function listAuthoredPRs(username) {
+  const prs = [];
+  let url = `/search/issues?q=${encodeURIComponent(`author:${username} is:pr`)}&per_page=100`;
   while (url) {
     const res = await githubRequest(url);
     if (!res.ok) {
-      warn(`Failed to list repos (status ${res.status}) at ${url}; stopping pagination.`);
+      warn(`Failed to list PRs (status ${res.status}) at ${url}; stopping pagination.`);
       break;
     }
-    const page = await res.json();
-    repos.push(...page);
+    const data = await res.json();
+    for (const item of data.items || []) {
+      const repoFullName = item.repository_url.replace('https://api.github.com/repos/', '');
+      const [, repoName] = repoFullName.split('/');
+      prs.push({ repoFullName, repoName, number: item.number, title: item.title });
+    }
     url = parseNextLink(res.headers.get('link'));
-    if (url) url = url.replace(API_ROOT, '');
   }
-  return repos.filter((r) => !r.fork);
+  return prs;
 }
 
-async function fetchLanguages(owner, repo) {
-  try {
-    const res = await githubRequest(`/repos/${owner}/${repo}/languages`);
+async function fetchPRFiles(repoFullName, number) {
+  const files = [];
+  let url = `/repos/${repoFullName}/pulls/${number}/files?per_page=100`;
+  while (url) {
+    const res = await githubRequest(url);
     if (!res.ok) {
-      warn(`Skipping ${owner}/${repo}: languages request failed (status ${res.status}).`);
-      return {};
+      warn(`Skipping ${repoFullName}#${number}: files request failed (status ${res.status}).`);
+      return files;
     }
-    return await res.json();
-  } catch (err) {
-    warn(`Skipping ${owner}/${repo}: ${err.message}`);
-    return {};
+    const batch = await res.json();
+    files.push(...batch);
+    url = parseNextLink(res.headers.get('link'));
   }
+  return files;
+}
+
+function extOf(filename) {
+  const m = filename.match(/(\.[a-zA-Z0-9]+)$/);
+  return m ? m[1].toLowerCase() : null;
+}
+
+function countEmbeddedSqlLines(patch) {
+  if (!patch) return 0;
+  let count = 0;
+  for (const line of patch.split('\n')) {
+    if (!/^[+-]/.test(line) || /^[+-]{3}/.test(line)) continue;
+    if (SQL_LINE_PATTERN.test(line.slice(1))) count++;
+  }
+  return count;
 }
 
 function buildSlices(totals) {
   const filtered = Object.entries(totals).filter(
     ([lang]) => !EXCLUDED_LANGUAGES.includes(lang)
   );
-  const grandTotal = filtered.reduce((sum, [, bytes]) => sum + bytes, 0);
+  const grandTotal = filtered.reduce((sum, [, weight]) => sum + weight, 0);
   if (grandTotal === 0) return [];
 
   filtered.sort((a, b) => b[1] - a[1]);
 
   const top = filtered.slice(0, MAX_SLICES);
   const rest = filtered.slice(MAX_SLICES);
-  const restTotal = rest.reduce((sum, [, bytes]) => sum + bytes, 0);
+  const restTotal = rest.reduce((sum, [, weight]) => sum + weight, 0);
 
-  const slices = top.map(([name, bytes]) => ({
+  const slices = top.map(([name, weight]) => ({
     name,
-    bytes,
-    pct: (bytes / grandTotal) * 100,
+    weight,
+    pct: (weight / grandTotal) * 100,
   }));
 
   if (restTotal > 0) {
-    slices.push({ name: 'Other', bytes: restTotal, pct: (restTotal / grandTotal) * 100 });
+    slices.push({ name: 'Other languages', weight: restTotal, pct: (restTotal / grandTotal) * 100 });
   }
 
   return slices;
@@ -220,24 +280,48 @@ function renderSvg(slices) {
 }
 
 async function main() {
-  const canProceed = await checkRateLimit();
+  const prs = await listAuthoredPRs(USERNAME);
+  if (prs.length === 0) {
+    warn(`No PRs found for ${USERNAME}; leaving existing chart untouched.`);
+    process.exitCode = 0;
+    return;
+  }
+
+  // Rough budget: one files-request per PR (most PRs fit in one page).
+  const canProceed = await checkRateLimit(prs.length + 20);
   if (!canProceed) {
     process.exitCode = 0;
     return;
   }
 
-  const repos = await listOwnedRepos(USERNAME);
-  if (repos.length === 0) {
-    warn(`No non-fork repos found for ${USERNAME}; leaving existing chart untouched.`);
-    process.exitCode = 0;
-    return;
-  }
-
   const totals = {};
-  for (const repo of repos) {
-    const languages = await fetchLanguages(USERNAME, repo.name);
-    for (const [lang, bytes] of Object.entries(languages)) {
-      totals[lang] = (totals[lang] || 0) + bytes;
+  let skipped = 0;
+
+  for (const pr of prs) {
+    if (EXCLUDED_REPOS.includes(pr.repoName) || THROWAWAY_TITLE_PATTERN.test(pr.title)) {
+      skipped++;
+      continue;
+    }
+
+    let files;
+    try {
+      files = await fetchPRFiles(pr.repoFullName, pr.number);
+    } catch (err) {
+      warn(`Skipping ${pr.repoFullName}#${pr.number}: ${err.message}`);
+      continue;
+    }
+
+    for (const f of files) {
+      const ext = extOf(f.filename);
+      const lang = ext && EXT_LANGUAGE[ext];
+      if (!lang) continue;
+
+      const totalChanged = (f.additions || 0) + (f.deletions || 0);
+      const sqlLines = lang === 'SQL' ? 0 : Math.min(countEmbeddedSqlLines(f.patch), totalChanged);
+      const hostWeight = totalChanged - sqlLines;
+
+      if (sqlLines > 0) totals.SQL = (totals.SQL || 0) + sqlLines;
+      if (hostWeight > 0) totals[lang] = (totals[lang] || 0) + hostWeight;
     }
   }
 
@@ -251,7 +335,7 @@ async function main() {
   const svg = renderSvg(slices);
   fs.mkdirSync(path.dirname(OUTPUT_PATH), { recursive: true });
   fs.writeFileSync(OUTPUT_PATH, svg);
-  console.log(`Wrote ${OUTPUT_PATH} with ${slices.length} slices from ${repos.length} repos.`);
+  console.log(`Wrote ${OUTPUT_PATH} with ${slices.length} slices from ${prs.length - skipped}/${prs.length} PRs.`);
 }
 
 main().catch((err) => {
