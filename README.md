@@ -86,7 +86,7 @@ Merged pull requests to established, multi-contributor Stellar/Soroban open-sour
 
 <p align="left">
   <img height="165" src="https://github-readme-stats.vercel.app/api?username=solaawojobi00-bit&show_icons=true&theme=default&hide_border=true&count_private=true&cache_seconds=1800" />
-  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=solaawojobi00-bit&layout=compact&hide_border=true&cache_seconds=1800" />
+  <img height="220" src="https://raw.githubusercontent.com/solaawojobi00-bit/solaawojobi00-bit/main/assets/language-pie-chart.svg" alt="Language breakdown pie chart" />
 </p>
 
 <p align="left">

@@ -1,0 +1,25 @@
+<svg width="480" height="260" viewBox="0 0 480 260" xmlns="http://www.w3.org/2000/svg">
+  <rect width="480" height="260" rx="10" fill="#000000" />
+  <text x="20" y="24" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Languages</text>
+  <g transform="translate(0, 10)">
+    <path d="M 130,130 L 130.00,30.00 A 100,100 0 1 1 64.48,205.54 Z" fill="#3178c6" stroke="#000000" stroke-width="1" />
+    <path d="M 130,130 L 64.48,205.54 A 100,100 0 0 1 88.13,39.19 Z" fill="#e34c26" stroke="#000000" stroke-width="1" />
+    <path d="M 130,130 L 88.13,39.19 A 100,100 0 0 1 100.63,34.41 Z" fill="#3572A5" stroke="#000000" stroke-width="1" />
+    <path d="M 130,130 L 100.63,34.41 A 100,100 0 0 1 112.58,31.53 Z" fill="#f1e05a" stroke="#000000" stroke-width="1" />
+    <path d="M 130,130 L 112.58,31.53 A 100,100 0 0 1 122.95,30.25 Z" fill="#dea584" stroke="#000000" stroke-width="1" />
+    <path d="M 130,130 L 122.95,30.25 A 100,100 0 0 1 130.00,30.00 Z" fill="#563d7c" stroke="#000000" stroke-width="1" />
+  </g>
+  <g>
+      <rect x="270" y="28" width="14" height="14" rx="2" fill="#3178c6" />
+      <text x="292" y="39" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#ffffff">TypeScript (61.4%)</text>
+      <rect x="270" y="54" width="14" height="14" rx="2" fill="#e34c26" />
+      <text x="292" y="65" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#ffffff">HTML (31.8%)</text>
+      <rect x="270" y="80" width="14" height="14" rx="2" fill="#3572A5" />
+      <text x="292" y="91" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#ffffff">Python (2.1%)</text>
+      <rect x="270" y="106" width="14" height="14" rx="2" fill="#f1e05a" />
+      <text x="292" y="117" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#ffffff">JavaScript (2.0%)</text>
+      <rect x="270" y="132" width="14" height="14" rx="2" fill="#dea584" />
+      <text x="292" y="143" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#ffffff">Rust (1.7%)</text>
+      <rect x="270" y="158" width="14" height="14" rx="2" fill="#563d7c" />
+      <text x="292" y="169" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#ffffff">CSS (1.1%)</text></g>
+</svg>
