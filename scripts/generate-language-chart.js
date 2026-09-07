@@ -56,7 +56,7 @@ const EXT_LANGUAGE = {
 // (e.g. better-sqlite3/pg template strings in .ts/.js). Detecting it in the
 // diff keeps that real SQL work from being invisible just because it lives
 // inside a .ts file, and keeps it from inflating the host language's count.
-const SQL_LINE_PATTERN = /^\s*(CREATE\s+(TABLE|INDEX|VIEW)|SELECT\s|INSERT\s+INTO|UPDATE\s+\w+\s+SET|DELETE\s+FROM|ALTER\s+TABLE|DROP\s+(TABLE|INDEX)|PRAGMA\s|WITH\s+\w+\s+AS\s*\()/i;
+const SQL_LINE_PATTERN = /^\s*(--\s|CREATE\s+(TABLE|INDEX|VIEW|TRIGGER)|SELECT\s|INSERT\s+(INTO|OR\s+REPLACE|OR\s+IGNORE)|UPDATE\s+\w+\s+SET|DELETE\s+FROM|ALTER\s+TABLE|DROP\s+(TABLE|INDEX|VIEW|TRIGGER)|PRAGMA\s|WITH\s+\w+\s+AS|FROM\s|WHERE\s|GROUP\s+BY|ORDER\s+BY|HAVING\s|LIMIT\s|OFFSET\s|JOIN\s|LEFT\s+JOIN|RIGHT\s+JOIN|INNER\s+JOIN|CROSS\s+JOIN|UNION\s|VALUES\s*\(|ON\s+CONFLICT|RETURNING\s|PRIMARY\s+KEY|FOREIGN\s+KEY|REFERENCES\s|CONSTRAINT\s)/i;
 
 // Recognizable language colors (loosely based on GitHub's linguist palette).
 // Anything not listed here gets a deterministic fallback color instead of
@@ -184,9 +184,19 @@ function extOf(filename) {
 function countEmbeddedSqlLines(patch) {
   if (!patch) return 0;
   let count = 0;
+  let inSqlTemplate = false;
   for (const line of patch.split('\n')) {
     if (!/^[+-]/.test(line) || /^[+-]{3}/.test(line)) continue;
-    if (SQL_LINE_PATTERN.test(line.slice(1))) count++;
+    const content = line.slice(1);
+    if (/(?:db\.(?:exec|prepare|query)|sql|query)\s*\(\s*`|`\s*(?:SELECT|CREATE|INSERT|UPDATE|DELETE|WITH|ALTER|DROP)/i.test(content)) {
+      inSqlTemplate = true;
+    }
+    if (SQL_LINE_PATTERN.test(content) || (inSqlTemplate && !/^\s*`\s*[);,]?$/.test(content) && !/^\s*(const|let|var|return|if|function|class)\s/.test(content))) {
+      count++;
+    }
+    if (inSqlTemplate && /`\s*[);,]?/.test(content)) {
+      inSqlTemplate = false;
+    }
   }
   return count;
 }
@@ -210,7 +220,7 @@ function buildSlices(totals) {
     pct: (weight / grandTotal) * 100,
   }));
 
-  if (restTotal > 0) {
+  if (restTotal > 0 && ((restTotal / grandTotal) * 100) >= 0.05) {
     slices.push({ name: 'Other languages', weight: restTotal, pct: (restTotal / grandTotal) * 100 });
   }
 

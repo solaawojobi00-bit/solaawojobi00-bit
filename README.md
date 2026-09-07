@@ -9,8 +9,8 @@
 
 ### 🔭 Currently working on
 
-- Building out **netpulse-xlm** and **sep-compliance-validator** as my flagship projects, both well past Phase 1 now (see Flagship projects below)
-- Actively contributing across the Stellar/Soroban ecosystem: 61+ merged PRs across 15 projects(see Contributions below)
+- Building out **xlm-flow-indexer**, **netpulse-xlm**, and **sep-compliance-validator** as my flagship projects (see Flagship projects below)
+- Actively contributing across the Stellar/Soroban ecosystem: 61+ merged PRs across 15 projects (see Contributions below)
 - Participating in the **Stellar Wave Program**
 
 ---
@@ -24,21 +24,23 @@
   <img src="https://img.shields.io/badge/Stellar%20SDK-000000?style=for-the-badge&logo=stellar&logoColor=white" />
   <img src="https://img.shields.io/badge/React%20%2F%20Next.js-000000?style=for-the-badge&logo=react&logoColor=white" />
   <img src="https://img.shields.io/badge/Node.js%20%2F%20TypeScript-339933?style=for-the-badge&logo=typescript&logoColor=white" />
+  <img src="https://img.shields.io/badge/SQL-E38C00?style=for-the-badge&logo=postgresql&logoColor=white" />
   <img src="https://img.shields.io/badge/PostgreSQL-4479A1?style=for-the-badge&logo=postgresql&logoColor=white" />
+  <img src="https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white" />
   <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white" />
   <img src="https://img.shields.io/badge/GitHub%20Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white" />
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" />
-  <img src="https://img.shields.io/badge/SQL-4479A1?style=for-the-badge&logo=postgresql&logoColor=white" />
 </p>
 
 ---
 
 ### 🚀 Flagship projects
 
-My two most actively developed projects, each grown well past an initial prototype into a genuinely deep, well-tested tool:
+My most actively developed projects, each grown well past an initial prototype into a genuinely deep, well-tested tool:
 
-- **[sep-compliance-validator](https://github.com/solaawojobi00-bit/sep-compliance-validator)** — 51 merged PRs. Started as a SEP-1/SEP-10 checker, now covers **SEP-1, SEP-10, SEP-12, SEP-24, and SEP-38** conformance end to end: live negative-case challenge submissions, JWT signature verification via anchor JWKS, muxed-account and memo support, 100% branch coverage on SEP-10 negative tests, and packaging as a reusable GitHub Action with an npm-published CLI (`--output`, `--only`, `--fail-on-warn`). Validated against Stellar's official testnet reference anchor.
-- **[netpulse-xlm](https://github.com/solaawojobi00-bit/netpulse-xlm)** — 38 merged PRs. Grew from a Phase 1 dashboard into a production-grade Stellar network monitor: replaced polling with Horizon SSE streaming + WebSocket push, added persistent historical storage with 24h trend views, CSV/JSON export, an accessibility pass, dark/light theming, and a CI pipeline with CodeQL scanning, dependency auditing, and secret scanning.
+- **[xlm-flow-indexer](https://github.com/solaawojobi00-bit/xlm-flow-indexer)** — Self-hostable Stellar ledger analytics indexer: resilient Horizon ingestion into SQLite/PostgreSQL with analytical SQL views (`account_flow_daily`, `asset_velocity`, `anchor_payment_volume`, `trade_pair_activity`, `top_accounts_by_volume`), cross-job idempotency, index verification, and EXPLAIN query plan benchmarking.
+- **[sep-compliance-validator](https://github.com/solaawojobi00-bit/sep-compliance-validator)** — 76 merged PRs. Started as a SEP-1/SEP-10 checker, now covers **SEP-1, SEP-10, SEP-12, SEP-24, and SEP-38** conformance end to end: live negative-case challenge submissions, JWT signature verification via anchor JWKS, muxed-account and memo support, 100% branch coverage on SEP-10 negative tests, and packaging as a reusable GitHub Action with an npm-published CLI (`--output`, `--only`, `--fail-on-warn`). Validated against Stellar's official testnet reference anchor.
+- **[netpulse-xlm](https://github.com/solaawojobi00-bit/netpulse-xlm)** — 85 merged PRs. Grew from a Phase 1 dashboard into a production-grade Stellar network monitor: replaced polling with Horizon SSE streaming + WebSocket push, added persistent historical storage with 24h trend views, CSV/JSON export, an accessibility pass, dark/light theming, and a CI pipeline with CodeQL scanning, dependency auditing, and secret scanning.
 
 ---
 
