@@ -2,16 +2,16 @@
   <rect width="480" height="260" rx="10" fill="#000000" />
   <text x="20" y="24" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Languages</text>
   <g transform="translate(0, 10)">
-    <path d="M 130,130 L 130.00,30.00 A 100,100 0 1 1 46.78,185.45 Z" fill="#3178c6" stroke="#000000" stroke-width="1" />
-    <path d="M 130,130 L 46.78,185.45 A 100,100 0 0 1 59.91,58.68 Z" fill="#f1e05a" stroke="#000000" stroke-width="1" />
-    <path d="M 130,130 L 59.91,58.68 A 100,100 0 0 1 105.05,33.16 Z" fill="#dea584" stroke="#000000" stroke-width="1" />
-    <path d="M 130,130 L 105.05,33.16 A 100,100 0 0 1 130.00,30.00 Z" fill="#6e7681" stroke="#000000" stroke-width="1" />
+    <path d="M 130,130 L 130.00,30.00 A 100,100 0 1 1 45.62,183.66 Z" fill="#3178c6" stroke="#000000" stroke-width="1" />
+    <path d="M 130,130 L 45.62,183.66 A 100,100 0 0 1 60.40,58.19 Z" fill="#f1e05a" stroke="#000000" stroke-width="1" />
+    <path d="M 130,130 L 60.40,58.19 A 100,100 0 0 1 105.19,33.13 Z" fill="#dea584" stroke="#000000" stroke-width="1" />
+    <path d="M 130,130 L 105.19,33.13 A 100,100 0 0 1 130.00,30.00 Z" fill="#6e7681" stroke="#000000" stroke-width="1" />
   </g>
   <g>
       <rect x="270" y="28" width="14" height="14" rx="2" fill="#3178c6" />
-      <text x="292" y="39" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#ffffff">TypeScript (65.6%)</text>
+      <text x="292" y="39" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#ffffff">TypeScript (66.0%)</text>
       <rect x="270" y="54" width="14" height="14" rx="2" fill="#f1e05a" />
-      <text x="292" y="65" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#ffffff">JavaScript (22.0%)</text>
+      <text x="292" y="65" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#ffffff">JavaScript (21.8%)</text>
       <rect x="270" y="80" width="14" height="14" rx="2" fill="#dea584" />
       <text x="292" y="91" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="13" fill="#ffffff">Rust (8.3%)</text>
       <rect x="270" y="106" width="14" height="14" rx="2" fill="#6e7681" />
