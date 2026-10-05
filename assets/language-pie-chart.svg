@@ -2,9 +2,9 @@
   <rect width="480" height="260" rx="10" fill="#000000" />
   <text x="20" y="24" font-family="'Segoe UI', Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#ffffff">Languages</text>
   <g transform="translate(0, 10)">
-    <path d="M 130,130 L 130.00,30.00 A 100,100 0 1 1 41.38,176.33 Z" fill="#3178c6" stroke="#000000" stroke-width="1" />
-    <path d="M 130,130 L 41.38,176.33 A 100,100 0 0 1 56.57,62.12 Z" fill="#f1e05a" stroke="#000000" stroke-width="1" />
-    <path d="M 130,130 L 56.57,62.12 A 100,100 0 0 1 105.26,33.11 Z" fill="#dea584" stroke="#000000" stroke-width="1" />
+    <path d="M 130,130 L 130.00,30.00 A 100,100 0 1 1 41.37,176.32 Z" fill="#3178c6" stroke="#000000" stroke-width="1" />
+    <path d="M 130,130 L 41.37,176.32 A 100,100 0 0 1 56.58,62.11 Z" fill="#f1e05a" stroke="#000000" stroke-width="1" />
+    <path d="M 130,130 L 56.58,62.11 A 100,100 0 0 1 105.26,33.11 Z" fill="#dea584" stroke="#000000" stroke-width="1" />
     <path d="M 130,130 L 105.26,33.11 A 100,100 0 0 1 130.00,30.00 Z" fill="#6e7681" stroke="#000000" stroke-width="1" />
   </g>
   <g>
