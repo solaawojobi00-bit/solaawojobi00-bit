@@ -16,13 +16,20 @@
 
 ### 🛠️ Skills & Tools
 
-<p align="left"><a href="https://skillicons.dev"><img src="https://skillicons.dev/icons?i=rust,react,nextjs,nodejs,ts,postgres,sqlite,redis,vercel,githubactions,py&theme=dark&perline=8" /></a></p>
-
 <p align="left">
   <img src="https://img.shields.io/badge/Soroban-000000?style=for-the-badge&logoColor=white" />
+  <img src="https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white" />
   <img src="https://img.shields.io/badge/Horizon%20API-000000?style=for-the-badge&logo=stellar&logoColor=white" />
   <img src="https://img.shields.io/badge/Stellar%20SDK-000000?style=for-the-badge&logo=stellar&logoColor=white" />
+  <img src="https://img.shields.io/badge/React%20%2F%20Next.js-000000?style=for-the-badge&logo=react&logoColor=white" />
+  <img src="https://img.shields.io/badge/Node.js%20%2F%20TypeScript-339933?style=for-the-badge&logo=typescript&logoColor=white" />
   <img src="https://img.shields.io/badge/SQL-E38C00?style=for-the-badge&logo=postgresql&logoColor=white" />
+  <img src="https://img.shields.io/badge/PostgreSQL-4479A1?style=for-the-badge&logo=postgresql&logoColor=white" />
+  <img src="https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white" />
+  <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white" />
+  <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" />
+  <img src="https://img.shields.io/badge/GitHub%20Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white" />
+  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" />
 </p>
 
 ---
