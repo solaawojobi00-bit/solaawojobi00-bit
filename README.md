@@ -72,6 +72,8 @@ Working MVPs built and verified end-to-end on Stellar testnet:
 
 ---
 
+### 📊 GitHub Stats
+
 <p align="left">
   <img height="220" src="https://raw.githubusercontent.com/solaawojobi00-bit/solaawojobi00-bit/main/assets/language-pie-chart.svg" alt="Language breakdown pie chart" />
 </p>
