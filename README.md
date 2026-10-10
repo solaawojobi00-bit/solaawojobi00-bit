@@ -86,9 +86,6 @@ Working MVPs built and verified end-to-end on Stellar testnet:
 
 ### 🔗 Connect with me
 
-<p align="left">
-  <a href="https://www.linkedin.com/in/sola-awojobi-177625191" target="_blank">
-    <img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" />
   </a>
   <a href="https://x.com/solaawojobi?s=11" target="_blank">
     <img src="https://img.shields.io/badge/X-000000?style=for-the-badge&logo=x&logoColor=white" />
